@@ -1,10 +1,14 @@
 import React from "react";
 
+import BigPoster from "../../components/BigPoster";
+import CategorySlide from "../../components/CategorySlide";
+
 
 const HomePage = () => {
     return(
         <div className="home-page">
-            <h1>THIS IS HOME PAGE</h1>
+            <BigPoster />
+            <CategorySlide />
         </div>
     )
 }

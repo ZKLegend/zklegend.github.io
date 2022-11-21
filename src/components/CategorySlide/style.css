@@ -1,0 +1,23 @@
+.category-slide {
+    width: 100%;
+}
+
+.category-name {
+    color: white;
+    padding: 0 60px;
+    border: 1px solid white;
+    margin: 0;
+}
+
+.category-slide-container {
+    display: flex;
+    border: 1px solid white;
+    height: 250px;
+    color: white;
+    padding: 0 60px;
+}
+
+.category-slide-item {
+    border: 1px solid white;
+    min-width: 20%;
+}

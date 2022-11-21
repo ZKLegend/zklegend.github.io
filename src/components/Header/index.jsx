@@ -56,8 +56,8 @@ const Header = () => {
             ) : null}
           </div>
         </ClickAwayListener>
-        <Link to="/register">Register</Link>
-        <Link to="/login">Login</Link>
+        <Link className="register-nav" to="/register">Register</Link>
+        <Link className="login-nav" to="/login">Login</Link>
       </div>
     </div>
   );
