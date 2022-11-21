@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 
@@ -12,7 +12,7 @@ const Header = () => {
 
   const handleClick = () => {
     setOpen((prev) => {
-        return !prev;
+      return !prev;
     });
   };
 
@@ -23,29 +23,28 @@ const Header = () => {
   return (
     <div className="header">
       <div className="left-header">
-        <a className="home-navigation" href="">
+        <Link to="/" className="home-navigation" >
           MY ANIME
-        </a>
-        <a href="">TV Show</a>
-        <a href="">Movies</a>
-        <a href="">Trending</a>
-        <a href="">My List</a>
+        </Link>
+        <Link to="/tvshow">TV Show</Link>
+        <Link to="/movies">Movies</Link>
+        <Link to="/trending">Trending</Link>
+        <Link to="/mylist">My List</Link>
       </div>
       <div className="right-header">
-        <form className="search-container">
-          <input
-            className="search-bar"
-            type="text"
-            placeholder="Search..."
-            name="search"
-          />
-          <button type="submit">
-            <SearchIcon className="search-icon" />
-          </button>
-        </form>
+        <div className="search-container">
+          <div className="search-icon-wrapper">
+             <SearchIcon className="search-icon" />
+          </div>
+          <input className="search-bar" type="text" placeholder="Search..." />
+        </div>
         <ClickAwayListener onClickAway={handleClickAway}>
           <div className="language-container">
-            <button className="language-btn" type="button" onClick={handleClick}>
+            <button
+              className="language-btn"
+              type="button"
+              onClick={handleClick}
+            >
               Language
             </button>
             {open ? (
@@ -57,8 +56,8 @@ const Header = () => {
             ) : null}
           </div>
         </ClickAwayListener>
-        <a href="">Register</a>
-        <a href="">Login</a>
+        <Link to="/register">Register</Link>
+        <Link to="/login">Login</Link>
       </div>
     </div>
   );

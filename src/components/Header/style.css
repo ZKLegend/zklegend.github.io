@@ -8,7 +8,6 @@ body {
 .header {
   display: flex;
   padding: 0 60px;
-  border: 1px solid black;
   background-color: rgb(20, 20, 20);
   height: 68px;
   align-items: center;
@@ -24,17 +23,32 @@ body {
 /* Đang không đồng bộ được chiều cao giữa thanh search, nút language và icon Search */
 .search-container {
     display: flex;
+    /* border: 1px solid white; */
     margin-right: 20px;
     align-items: center;
-    height: 33px;
+    height: 50%;
+}
+
+.search-icon-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  height: 100%;
+}
+
+.search-icon {
+  background-color: white;
+  color: black;
+  padding: 0 10px;
+  
 }
 
 .search-bar {
-    height: 100%;
+  height: 100%;
 }
 
 .language-btn {
-    height: 33px;
+    height: 100%;
 }
 
 .header a {
@@ -55,6 +69,7 @@ body {
 
 .language-container {
     position: relative;
+    height: 50%;
 }
 
 
