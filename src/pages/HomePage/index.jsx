@@ -9,21 +9,18 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("https://637c33cc72f3ce38ea9ce6a2.mockapi.io/AnimeList")
+      .get("https://637c33cc72f3ce38ea9ce6a2.mockapi.io/Category")
       .then((res) => {
-        console.log("Res:", res);
-        console.log(res.data);
         setCategoryList([...res.data]);
       });
   }, []);
 
-//   console.log("Category:", categoryList);
-
+  console.log(categoryList)
   return (
     <div className="home-page">
       <BigPoster />
       {categoryList.map((element) => (
-        <CategorySlide name={element.name} />
+        <CategorySlide categoryName={element.categoryName} />
       ))}
       {/* Đoạn trên đang bị một lỗi là mỗi khi render ra 1 cái CategorySlide thì nó sẽ gửi API request, vậy có ok không? */}
     </div>
