@@ -1,31 +1,40 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Carousel } from "antd";
 import "./style.css";
 
-const CategorySlideItem = () => {
-  return <div className="category-slide-item">Cat 1 - Movie 1</div>;
+const CategorySlideItem = ({ animeImg }) => {
+  return (
+  <img src={animeImg } className="category-slide-item" />
+  )
 };
 
 const CategorySlide = ({ categoryName }) => {
-  const [itemList, setItemList] = useState([]);
+  const [animeList, setAnimeList] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://637c33cc72f3ce38ea9ce6a2.mockapi.io/AnimeList")
+      .get(`https://gogoanime.consumet.org/genre/${categoryName}`)
       .then((res) => {
-        setItemList([...res.data]); 
+        console.log(res.data);
+        setAnimeList([...res.data]);
       });
   }, []);
- 
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="category-slide">
-      <h2 className="category-name">{categoryName}</h2>
+      <h2 className="category-name">{capitalizeFirstLetter(categoryName)}</h2>
       <div className="category-slide-container">
-        <CategorySlideItem />
-        {/* {itemList.map((element) => (
-          <CategorySlideItem image={element.image} />
-        ))} */}
+        <Carousel>
+        {animeList.map((element) => (
+            <CategorySlideItem animeImg={element.animeImg} />
+          ))}
+        </Carousel>
       </div>
     </div>
   );

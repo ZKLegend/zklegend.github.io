@@ -4,8 +4,55 @@ import axios from "axios";
 import BigPoster from "../../components/BigPoster";
 import CategorySlide from "../../components/CategorySlide";
 
+const categoryData = ["action",
+  "adventure",
+  "cars",
+  "comedy",
+  "crime",
+  "dementia",
+  "demons",
+  "drama",
+  "ecchi",
+  "family",
+  "fantasy",
+  "game",
+  "gourmet",
+  "harem",
+  "historical",
+  "horror",
+  "josei",
+  "kids",
+  "magic",
+  "martial-arts",
+  "mecha",
+  "military",
+  "mystery",
+  "parody",
+  "police",
+  "psychological",
+  "romance",
+  "samurai",
+  "school",
+  "sci-fi",
+  "seinen",
+  "shoujo",
+  "shoujo-ai",
+  "shounen",
+  "shounen-ai",
+  "space",
+  "sports",
+  "super-power",
+  "supernatural",
+  "suspense",
+  "thriller",
+  "vampire",
+  "yaoi",
+  "yuri"]
+
 const HomePage = () => {
   const [categoryList, setCategoryList] = useState([]);
+
+  
 
   useEffect(() => {
     axios
@@ -19,10 +66,9 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <BigPoster />
-      {categoryList.map((element) => (
-        <CategorySlide categoryName={element.categoryName} />
+      {categoryData.map((element) => (
+        <CategorySlide categoryName={element} />
       ))}
-      {/* Đoạn trên đang bị một lỗi là mỗi khi render ra 1 cái CategorySlide thì nó sẽ gửi API request, vậy có ok không? */}
     </div>
   );
 };
