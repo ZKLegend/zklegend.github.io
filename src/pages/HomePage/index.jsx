@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Col, Row, Typography } from "antd";
 
 import BigPoster from "../../components/BigPoster";
 import CategorySlide from "../../components/CategorySlide";
@@ -10,28 +11,24 @@ const categoryData = [
   "adventure",
   "cars",
   "comedy",
-  "crime",
   "dementia",
 ];
 
 const HomePage = () => {
-  const [categoryList, setCategoryList] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://637c33cc72f3ce38ea9ce6a2.mockapi.io/Category")
-      .then((res) => {
-        setCategoryList([...res.data]);
-      });
-  }, []);
-
-  console.log("Category List: ", categoryList);
   return (
     <div className="home-page">
-      <BigPoster />
-      {categoryData.map((element) => (
-        <CategorySlide categoryName={element} />
-      ))}
+      <Row>
+        <Col
+          span={16}
+          offset={4}
+          style={{ border: "1px solid white", height: "500px" }}
+        ></Col>
+        {categoryData.map((element) => (
+          <Col span={16} offset={4}>
+            <CategorySlide categoryName={element} />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };
