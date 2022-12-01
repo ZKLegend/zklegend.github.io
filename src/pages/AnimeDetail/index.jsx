@@ -1,32 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Card, Typography } from "antd";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const { Title } = Typography;
 
 const AnimeDetail = () => {
-  const [comedyList, setComedyList] = useState([]);
   const [streamingURL, setStreamingURL] = useState();
+  const [episodeId, setEpisodeId] = useState([]);
+  const params = useParams();
 
+  // Lấy Episode ID
+  useEffect(() => {
+    const getAnimeDetail = async () => {
+      const episodeInfo = [];
+      const response = await axios.get(
+        `https://gogoanime.consumet.org/anime-details/${params.animeId}`
+      );
+
+      response.data.episodesList.map((element) =>
+        episodeInfo.push(element.episodeId)
+      );
+      setEpisodeId([...episodeInfo]);
+    };
+    getAnimeDetail();
+  }, []);
+
+  console.log("Episode ID:", episodeId[episodeId.length - 1]);
+
+  // Lấy Episode URL tập đầu tiên
   useEffect(() => {
     const getStreamingURL = async () => {
       const response = await axios.get(
-        "https://gogoanime.consumet.org/vidcdn/watch/kancolle-itsuka-ano-umi-de-episode-1"
+        `https://gogoanime.consumet.org/vidcdn/watch/${
+          episodeId[episodeId.length - 1]
+        }`
       );
+      console.log("Data: ", response);
       console.log("Streaming URL Response: ", response.data.Referer);
       setStreamingURL(response.data.Referer);
     };
     getStreamingURL();
-  }, []);
-
-  useEffect(() => {
-    const getComedyList = async () => {
-      const response = await axios.get(
-        "https://gogoanime.consumet.org/genre/comedy"
-      );
-      setComedyList([...response.data]);
-    };
-    getComedyList();
   }, []);
 
   return (
@@ -37,12 +51,12 @@ const AnimeDetail = () => {
           span={16}
           offset={4}
         >
-          <iframe
+          {/* <iframe
             height="100%"
             width="100%"
             style={{ border: "none" }}
             src={streamingURL}
-          ></iframe>
+          ></iframe> */}
         </Col>
         <Col style={{ border: "1px solid white" }} span={16} offset={4}>
           <Title level={2} style={{ color: "white", marginTop: "auto" }}>

@@ -5,6 +5,7 @@ import BigPoster from "../../components/BigPoster";
 import CategorySlide from "../../components/CategorySlide";
 
 const categoryData = [
+  "thriller",
   "action",
   "adventure",
   "cars",

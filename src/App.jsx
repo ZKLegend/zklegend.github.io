@@ -10,7 +10,7 @@ import Trending from "./pages/Trending";
 import Mylist from "./pages/Mylist";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Action from "./pages/Action";
+import AnimeCategory from "./pages/AnimeCategory";
 import AnimeDetail from "./pages/AnimeDetail";
 
 const App = () => {
@@ -25,8 +25,8 @@ const App = () => {
         <Route path="mylist" element={<Mylist />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/genre/action" element={<Action />} />
-        <Route path="/genre/action/naruto" element={<AnimeDetail />} />
+        <Route path="/:categoryName" element={<AnimeCategory />} />
+        <Route path="/:categoryName/:animeId" element={<AnimeDetail />} />
       </Routes>
       <Footer />
     </div>

@@ -30,7 +30,7 @@ const CategorySlide = ({ categoryName }) => {
   return (
     <div className="category-slide">
       <div className="link-container">
-        <Link to="/genre/action" className="category-name">
+        <Link to={`/${categoryName}`} className="category-name">
           {capitalizeFirstLetter(categoryName)}
         </Link>
       </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Dropdown, Menu, Space, Card, Image } from "antd";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { PlayCircleOutlined } from "@ant-design/icons";
+import { PlayCircleFilled } from "@ant-design/icons";
 
 import "./style.css";
 
@@ -10,7 +12,7 @@ const items = [
   { key: "name-dsc", label: "Descending" },
 ];
 
-const ActionAnime = ({ actionImg }) => {
+const AnimeCategoryList = ({ animeImg, animeId, categoryName }) => {
   return (
     <Card
       bordered={false}
@@ -19,38 +21,50 @@ const ActionAnime = ({ actionImg }) => {
         margin: "20px",
         width: "calc(100%/5)",
       }}
-      bodyStyle={{ padding: "0" }}
+      // bodyStyle={{ padding: "0" }}
     >
-      <Image src={actionImg} preview={false} />
-      <a
-        href=""
+      <Image src={animeImg} preview={false} style={{ width: "100%" }} />
+      <Link
+        to={`/${categoryName}/${animeId}`}
         style={{
-          display: "block",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           position: "absolute",
           width: "100%",
           height: "100%",
           top: "0",
+          left: "0",
         }}
-      ></a>
-      <PlayCircleOutlined />
+      >
+        <PlayCircleFilled style={{ fontSize: "40px" }} />
+      </Link>
     </Card>
   );
 };
 
-const Action = () => {
-  const [actionList, setActionList] = useState([]);
+const AnimeCategory = () => {
+  const [animeList, setAnimeList] = useState([]);
+  const params = useParams();
+  console.log("Params:", params.categoryName);
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   useEffect(() => {
-    axios.get("https://gogoanime.consumet.org/genre/action").then((res) => {
-      console.log(res.data);
-      setActionList([...res.data]);
-    });
+    axios
+      .get(`https://gogoanime.consumet.org/genre/${params.categoryName}`)
+      .then((res) => {
+        console.log("Data:", res.data);
+        setAnimeList([...res.data]);
+      });
   }, []);
 
   const onClick = (event) => {
     console.log(event);
-    setActionList(
-      [...actionList].sort((a, b) => {
+    setAnimeList(
+      [...animeList].sort((a, b) => {
         if (event.key === "name-asc") {
           const nameA = a.animeTitle.toUpperCase();
           const nameB = b.animeTitle.toUpperCase();
@@ -77,9 +91,9 @@ const Action = () => {
   };
 
   return (
-    <div className="action">
-      <h1>Action Anime</h1>
-      <div className="poster-container">Top Action Anime</div>
+    <div className="anime-category">
+      <h1>{capitalizeFirstLetter(params.categoryName)} Anime</h1>
+      <div className="poster-container">Top {params.categoryName} Anime</div>
       <Dropdown
         menu={{
           items,
@@ -97,13 +111,18 @@ const Action = () => {
           Sort by Name
         </Button>
       </Dropdown>
-      <div className="action-anime-list-container">
-        {actionList.map((element) => (
-          <ActionAnime key={element.animeId} actionImg={element.animeImg} />
+      <div className="anime-category-list-container">
+        {animeList.map((element) => (
+          <AnimeCategoryList
+            key={element.animeId}
+            animeImg={element.animeImg}
+            animeId={element.animeId}
+            categoryName={params.categoryName}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-export default Action;
+export default AnimeCategory;
