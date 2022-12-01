@@ -8,6 +8,7 @@ const { Title } = Typography;
 const AnimeDetail = () => {
   const [animeDetail, setAnimeDetail] = useState({});
   const [streamingURL, setStreamingURL] = useState();
+  const [episodeInfo, setEpisodeInfo] = useState([]);
   const [episodeId, setEpisodeId] = useState([]);
   const params = useParams();
 
@@ -21,11 +22,16 @@ const AnimeDetail = () => {
       response.data.episodesList.map((element) =>
         episodeInfo.push(element.episodeId)
       );
+      console.log(response.data);
       setEpisodeId([...episodeInfo]);
+      setEpisodeInfo([...response.data.episodesList]);
       setAnimeDetail({ ...response.data });
     };
     getAnimeDetail();
   }, []);
+
+  console.log("Episode: ", episodeId);
+  console.log("Episode Info", episodeInfo);
 
   // Lấy Episode URL tập đầu tiên
   useEffect(() => {
