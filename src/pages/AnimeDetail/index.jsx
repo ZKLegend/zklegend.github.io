@@ -6,6 +6,7 @@ import axios from "axios";
 const { Title } = Typography;
 
 const AnimeDetail = () => {
+  const [animeDetail, setAnimeDetail] = useState({});
   const [streamingURL, setStreamingURL] = useState();
   const [episodeId, setEpisodeId] = useState([]);
   const params = useParams();
@@ -17,16 +18,14 @@ const AnimeDetail = () => {
       const response = await axios.get(
         `https://gogoanime.consumet.org/anime-details/${params.animeId}`
       );
-
       response.data.episodesList.map((element) =>
         episodeInfo.push(element.episodeId)
       );
       setEpisodeId([...episodeInfo]);
+      setAnimeDetail({ ...response.data });
     };
     getAnimeDetail();
   }, []);
-
-  console.log("Episode ID:", episodeId[episodeId.length - 1]);
 
   // Lấy Episode URL tập đầu tiên
   useEffect(() => {
@@ -36,8 +35,6 @@ const AnimeDetail = () => {
           episodeId[episodeId.length - 1]
         }`
       );
-      console.log("Data: ", response);
-      console.log("Streaming URL Response: ", response.data.Referer);
       setStreamingURL(response.data.Referer);
     };
     getStreamingURL();
@@ -60,7 +57,7 @@ const AnimeDetail = () => {
         </Col>
         <Col style={{ border: "1px solid white" }} span={16} offset={4}>
           <Title level={2} style={{ color: "white", marginTop: "auto" }}>
-            Anime Name - Episode 1
+            {animeDetail.animeTitle} - Episode 1
           </Title>
         </Col>
         <Col style={{ border: "1px solid white" }} span={16} offset={4}>
