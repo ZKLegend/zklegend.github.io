@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Carousel, Row, Col, Image } from "antd";
+import { Carousel, Row, Col, Image, Space } from "antd";
 import {
   PlayCircleFilled,
   RightCircleFilled,
@@ -14,6 +14,7 @@ import "./style.css";
 
 const CategorySlide = ({ categoryName }) => {
   const [animeList, setAnimeList] = useState([]);
+  const ref = useRef();
 
   useEffect(() => {
     axios
@@ -30,26 +31,38 @@ const CategorySlide = ({ categoryName }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  console.log("Ref: ", ref);
   return (
     <div className="category-slide">
-      <Row align="middle" style={{ height: "56px" }}>
-        <Link to={`/${categoryName}`} className="category-name">
-          {capitalizeFirstLetter(categoryName)} Anime
-        </Link>
+      <Row align="middle" style={{ height: "56px" }} justify="space-between">
+        <Col>
+          <Link to={`/${categoryName}`} className="category-name">
+            {capitalizeFirstLetter(categoryName)} Anime
+          </Link>
+        </Col>
+        <Col>
+          <Space>
+            <LeftCircleFilled
+              style={{ color: "white", fontSize: "20px" }}
+              onClick={() => {
+                ref.current.prev();
+              }}
+            />
+            <RightCircleFilled
+              style={{ color: "white", fontSize: "20px" }}
+              onClick={() => {
+                ref.current.next();
+              }}
+            />
+          </Space>
+        </Col>
       </Row>
       <Carousel
-        arrows
-        prevArrow={<LeftCircleFilled />}
-        nextArrow={
-          <RightCircleFilled
-            style={{ zIndex: "5", display: "block", color: "white" }}
-          />
-        }
         dotPosition="top"
-        dotsClass={{ position: "absolute", top: "-40px" }}
         slidesToShow={5}
         slidesToScroll={5}
         style={{ height: "250px" }}
+        ref={ref}
       >
         {animeList.map((element) => (
           <Col style={{ border: "1px solid white" }}>

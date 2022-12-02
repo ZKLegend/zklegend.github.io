@@ -18,11 +18,9 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <Row>
-        <Col
-          span={16}
-          offset={4}
-          style={{ border: "1px solid white", height: "500px" }}
-        ></Col>
+        <Col span={16} offset={4} style={{ height: "500px" }}>
+          <BigPoster />
+        </Col>
         {categoryData.map((element) => (
           <Col span={16} offset={4}>
             <CategorySlide categoryName={element} />
