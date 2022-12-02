@@ -4,7 +4,6 @@ import { Layout, Menu, Space, Input, Col, Row } from "antd";
 import "./style.css";
 
 import HomePage from "./pages/HomePage";
-import Tvshow from "./pages/TVShow";
 import Movies from "./pages/Movies";
 import Trending from "./pages/Trending";
 import Mylist from "./pages/Mylist";

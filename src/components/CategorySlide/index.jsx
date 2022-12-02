@@ -20,18 +20,14 @@ const CategorySlide = ({ categoryName }) => {
     axios
       .get(`https://gogoanime.consumet.org/genre/${categoryName}`)
       .then((res) => {
-        console.log(res.data);
         setAnimeList([...res.data]);
       });
   }, []);
-
-  console.log("AnimeList: ", animeList);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  console.log("Ref: ", ref);
   return (
     <div className="category-slide">
       <Row align="middle" style={{ height: "56px" }} justify="space-between">
