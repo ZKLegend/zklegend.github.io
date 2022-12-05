@@ -30,15 +30,15 @@ const BigPoster = () => {
   console.log("Recent Release Anime: ", recentRelease);
 
   // Dùng AnimeId từ recentRelease để lấy AnimeDetail
-  const [animeId, setAnimeId] = useState([]);
-  useEffect(() => {
-    recentRelease.map((element) => setAnimeId([element.animeId]));
-  }, []);
-  console.log("Anime ID: ", animeId);
+  // const [animeId, setAnimeId] = useState([]);
+  // useEffect(() => {
+  //   recentRelease.map((element) => setAnimeId([element.animeId]));
+  // }, []);
+  // console.log("Anime ID: ", animeId);
 
   return (
     <div className="home-page">
-      <Carousel autoplay={false} dots={false}>
+      <Carousel autoplay={true} dots={false}>
         {recentRelease.map((element) => (
           <Row>
             <Col span={24} style={{ position: "relative", height: "100%" }}>

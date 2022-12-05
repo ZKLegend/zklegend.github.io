@@ -3,7 +3,17 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Carousel, Row, Col, Image, Space } from "antd";
+import {
+  Carousel,
+  Row,
+  Col,
+  Image,
+  Space,
+  Card,
+  Popover,
+  Descriptions,
+  Typography,
+} from "antd";
 import {
   PlayCircleFilled,
   RightCircleFilled,
@@ -11,17 +21,24 @@ import {
 } from "@ant-design/icons";
 
 import "./style.css";
+import AnimeInfo from "../AnimeInfo";
 
 const CategorySlide = ({ categoryName }) => {
   const [animeList, setAnimeList] = useState([]);
+  const displayRef = useRef();
   const ref = useRef();
 
+  console.log("Display Ref: ", displayRef);
+  console.log("Ref: ", ref);
+
   useEffect(() => {
-    axios
-      .get(`https://gogoanime.consumet.org/genre/${categoryName}`)
-      .then((res) => {
-        setAnimeList([...res.data]);
-      });
+    const getAnimebyGenre = async () => {
+      const response = await axios.get(
+        `https://gogoanime.consumet.org/genre/${categoryName}`
+      );
+      setAnimeList([...response.data]);
+    };
+    getAnimebyGenre();
   }, []);
 
   function capitalizeFirstLetter(string) {
@@ -54,36 +71,50 @@ const CategorySlide = ({ categoryName }) => {
         </Col>
       </Row>
       <Carousel
-        dotPosition="top"
         slidesToShow={5}
         slidesToScroll={5}
         style={{ height: "250px" }}
         ref={ref}
+        dots={false}
       >
         {animeList.map((element) => (
-          <Col style={{ border: "1px solid white" }}>
-            <Link
-              to={`/${categoryName}/${element.animeId}`}
-              style={{
-                position: "absolute",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-                width: "100%",
-                height: "100%",
-                zIndex: "1",
-              }}
-            >
-              <PlayCircleFilled style={{ fontSize: "60px" }} />
-            </Link>
-            <Image
-              src={element.animeImg}
-              height={250}
-              width={"100%"}
-              preview={false}
-            />
-          </Col>
+          <Row>
+            <Col>
+              <Popover
+                content={<AnimeInfo animeId={element.animeId} />}
+                title={element.animeTitle}
+                placement="right"
+                arrowPointAtCenter
+              >
+                <Link
+                  onMouseLeave={() => {}}
+                  to={`/${categoryName}/${element.animeId}`}
+                  style={{
+                    position: "absolute",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "white",
+                    width: "100%",
+                    height: "100%",
+                    zIndex: "1",
+                  }}
+                  className="link-container"
+                >
+                  <PlayCircleFilled
+                    style={{ fontSize: "60px" }}
+                    className="play-btn"
+                  />
+                </Link>
+              </Popover>
+              <Image
+                src={element.animeImg}
+                height={250}
+                width={"100%"}
+                preview={false}
+              />
+            </Col>
+          </Row>
         ))}
       </Carousel>
     </div>

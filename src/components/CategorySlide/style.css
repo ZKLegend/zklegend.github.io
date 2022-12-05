@@ -5,3 +5,11 @@
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
 }
+
+.play-btn {
+  display: none;
+}
+
+.link-container:hover .play-btn  {
+  display: block;
+}

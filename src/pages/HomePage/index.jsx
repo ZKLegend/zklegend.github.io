@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Suspense } from "react";
 import axios from "axios";
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Typography, Spin } from "antd";
 
 import BigPoster from "../../components/BigPoster";
 import CategorySlide from "../../components/CategorySlide";
@@ -16,18 +17,20 @@ const categoryData = [
 
 const HomePage = () => {
   return (
-    <div className="home-page">
-      <Row>
-        <Col span={16} offset={4} style={{ height: "500px" }}>
-          <BigPoster />
-        </Col>
-        {categoryData.map((element) => (
-          <Col span={16} offset={4}>
-            <CategorySlide categoryName={element} />
+    <Suspense fallback={<Spin />}>
+      <div className="home-page">
+        <Row>
+          <Col span={16} offset={4} style={{ height: "500px" }}>
+            <BigPoster />
           </Col>
-        ))}
-      </Row>
-    </div>
+          {categoryData.map((element) => (
+            <Col span={16} offset={4}>
+              <CategorySlide categoryName={element} />
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </Suspense>
   );
 };
 

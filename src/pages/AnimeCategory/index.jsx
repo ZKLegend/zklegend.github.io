@@ -1,45 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Dropdown, Menu, Space, Card, Image } from "antd";
+import { Button, Dropdown, Menu, Space, Card, Image, Popover } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { PlayCircleFilled } from "@ant-design/icons";
 
 import "./style.css";
+import AnimeInfo from "../../components/AnimeInfo";
 
 const items = [
   { key: "name-asc", label: "Ascending" },
   { key: "name-dsc", label: "Descending" },
 ];
 
-const AnimeCategoryList = ({ animeImg, animeId, categoryName }) => {
+const AnimeCategoryList = ({ animeTitle, animeImg, animeId, categoryName }) => {
   return (
-    <Card
-      bordered={false}
-      style={{
-        position: "relative",
-        margin: "20px",
-        width: "calc(100%/5)",
-      }}
-      // bodyStyle={{ padding: "0" }}
+    <Popover
+      content={<AnimeInfo animeId={animeId} />}
+      title={animeTitle}
+      placement="right"
+      arrowPointAtCenter
     >
-      <Image src={animeImg} preview={false} style={{ width: "100%" }} />
-      <Link
-        to={`/${categoryName}/${animeId}`}
+      <Card
+        bordered={false}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          top: "0",
-          left: "0",
+          position: "relative",
+          margin: "20px",
+          width: "calc(100%/5)",
         }}
       >
-        <PlayCircleFilled style={{ fontSize: "40px" }} />
-      </Link>
-    </Card>
+        <Image src={animeImg} preview={false} style={{ width: "100%" }} />
+        <Link
+          to={`/${categoryName}/${animeId}`}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: "0",
+            left: "0",
+          }}
+        >
+          <PlayCircleFilled style={{ fontSize: "40px" }} />
+        </Link>
+      </Card>
+    </Popover>
   );
 };
 
@@ -115,6 +122,7 @@ const AnimeCategory = () => {
         {animeList.map((element) => (
           <AnimeCategoryList
             key={element.animeId}
+            animeTitle={element.animeTitle}
             animeImg={element.animeImg}
             animeId={element.animeId}
             categoryName={params.categoryName}
