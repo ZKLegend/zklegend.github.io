@@ -31,7 +31,7 @@ const AnimeCategoryList = ({ animeTitle, animeImg, animeId, categoryName }) => {
       >
         <Image src={animeImg} preview={false} style={{ width: "100%" }} />
         <Link
-          to={`/${categoryName}/${animeId}`}
+          to={`/${animeId}/1`}
           style={{
             display: "flex",
             alignItems: "center",
@@ -53,7 +53,6 @@ const AnimeCategoryList = ({ animeTitle, animeImg, animeId, categoryName }) => {
 const AnimeCategory = () => {
   const [animeList, setAnimeList] = useState([]);
   const params = useParams();
-  console.log("Params:", params.categoryName);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -63,13 +62,11 @@ const AnimeCategory = () => {
     axios
       .get(`https://gogoanime.consumet.org/genre/${params.categoryName}`)
       .then((res) => {
-        console.log("Data:", res.data);
         setAnimeList([...res.data]);
       });
   }, []);
 
   const onClick = (event) => {
-    console.log(event);
     setAnimeList(
       [...animeList].sort((a, b) => {
         if (event.key === "name-asc") {

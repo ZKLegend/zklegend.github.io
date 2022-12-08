@@ -11,20 +11,26 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AnimeCategory from "./pages/AnimeCategory";
 import AnimeDetail from "./pages/AnimeDetail";
+import SearchFunction from "./components/SearchFunction";
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 
 const App = () => {
-  const onSearch = (value) => {
-    console.log(value);
-  };
   return (
     <div className="app">
       <Layout className="layout" style={{ backgroundColor: "#263238" }}>
-        <Header style={{ position: "sticky", top: "0", zIndex: "1" }}>
-          <Row justify="space-between">
-            <Col span={8}>
+        <Header
+          style={{
+            position: "sticky",
+            top: "0",
+            zIndex: "1",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Row justify="space-between" style={{ flexGrow: "3" }}>
+            <Col span={24}>
               <Space size={30}>
                 <Link to="/" className="home-navigation">
                   MY ANIME
@@ -34,15 +40,11 @@ const App = () => {
                 <Link to="/mylist">My List</Link>
               </Space>
             </Col>
-            <Col span={8}>
+          </Row>
+          <SearchFunction />
+          <Row>
+            <Col span={24}>
               <Space size={30}>
-                <div style={{ display: "inline-flex" }}>
-                  <Search
-                    placeholder="Search..."
-                    onSearch={onSearch}
-                    enterButton
-                  />
-                </div>
                 <Link className="register-nav" to="/register">
                   Register
                 </Link>
@@ -62,7 +64,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/:categoryName" element={<AnimeCategory />} />
-            <Route path="/:categoryName/:animeId" element={<AnimeDetail />} />
+            <Route path="/:animeId/:episodeNumber" element={<AnimeDetail />} />
           </Routes>
         </Content>
         <Footer style={{ textAlign: "center" }}>Designed by AnhLK</Footer>

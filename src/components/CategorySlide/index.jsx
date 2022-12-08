@@ -28,9 +28,6 @@ const CategorySlide = ({ categoryName }) => {
   const displayRef = useRef();
   const ref = useRef();
 
-  console.log("Display Ref: ", displayRef);
-  console.log("Ref: ", ref);
-
   useEffect(() => {
     const getAnimebyGenre = async () => {
       const response = await axios.get(
@@ -88,7 +85,7 @@ const CategorySlide = ({ categoryName }) => {
               >
                 <Link
                   onMouseLeave={() => {}}
-                  to={`/${categoryName}/${element.animeId}`}
+                  to={`/${element.animeId}/1`}
                   style={{
                     position: "absolute",
                     display: "flex",

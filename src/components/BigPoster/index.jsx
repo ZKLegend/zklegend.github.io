@@ -27,7 +27,6 @@ const BigPoster = () => {
     };
     getRecentAnime();
   }, []);
-  console.log("Recent Release Anime: ", recentRelease);
 
   // Dùng AnimeId từ recentRelease để lấy AnimeDetail
   // const [animeId, setAnimeId] = useState([]);

@@ -1,5 +1,19 @@
 body {
-        width: 100%;
-        margin: auto;
-        background-color: #263238;
+  width: 100%;
+  margin: auto;
+  background-color: #263238;
+}
+
+/* .search-function {
+  display: flex;
+} */
+
+.data-result {
+  margin-top: -10px;
+  /* border: 1px solid white; */
+  background-color: white;
+}
+
+h1 {
+  margin: 0;
 }
