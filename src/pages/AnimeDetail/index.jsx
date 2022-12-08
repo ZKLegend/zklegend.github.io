@@ -51,6 +51,7 @@ const AnimeDetail = () => {
 
   return (
     <div>
+      {/* Anime Stream */}
       {isLoading && <h1>Loading...</h1>}
       {!isLoading && episodesList.length == 0 && <h1>No Episode List</h1>}
       {!isLoading && episodesList.length > 0 && (
@@ -66,27 +67,50 @@ const AnimeDetail = () => {
               ></iframe>
             </Col>
           </Row>
+
+          {/* Anime Info */}
           <Row>
-            <Col style={{ border: "1px solid white" }} span={16} offset={4}>
-              <Title level={2} style={{ color: "white", marginTop: "auto" }}>
-                {`${animeDetail.animeTitle} - Episode ${params.episodeNumber}`}
-              </Title>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ border: "1px solid white" }} span={16} offset={4}>
-              {episodesList.map((element) => (
-                <a href={`/${params.animeId}/${element.episodeNum}`}>
-                  <Button>{`Episode ${element.episodeNum}`}</Button>
-                </a>
-              ))}
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ border: "1px solid white" }} span={16} offset={4}>
-              <Title level={5} style={{ marginTop: "auto", color: "white" }}>
-                Related Anime
-              </Title>
+            <Col
+              span={16}
+              offset={4}
+              style={{ border: "1px solid white", padding: "0 40px" }}
+            >
+              <Row>
+                <Col span={24}>
+                  <Title
+                    level={2}
+                    style={{ color: "white", marginTop: "auto" }}
+                  >
+                    {`${animeDetail.animeTitle} - Episode ${params.episodeNumber}`}
+                  </Title>
+                </Col>
+              </Row>
+              <Divider style={{ color: "white" }}>Episode Info</Divider>
+              <Row>
+                <Col span={24}>
+                  {episodesList.map((element) => (
+                    <a
+                      style={{ maxWidth: "90px" }}
+                      href={`/${params.animeId}/${element.episodeNum}`}
+                    >
+                      <Button
+                        style={{ padding: "0", width: "90px" }}
+                      >{`Episode ${element.episodeNum}`}</Button>
+                    </a>
+                  ))}
+                </Col>
+              </Row>
+              <Divider style={{ color: "white" }}>Related Anime</Divider>
+              <Row>
+                <Col span={24}>
+                  <Title
+                    level={5}
+                    style={{ marginTop: "auto", color: "white" }}
+                  >
+                    Related Anime
+                  </Title>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </div>

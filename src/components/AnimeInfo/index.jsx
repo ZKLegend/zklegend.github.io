@@ -5,6 +5,7 @@ import { Row, Col, Descriptions } from "antd";
 
 const AnimeInfo = (props) => {
   const [animeDetail, setAnimeDetail] = useState({});
+  const [animeGenre, setAnimeGenre] = useState([]);
   console.log("Props:", props.animeId);
   useEffect(() => {
     const getAnimeDetail = async () => {
@@ -12,10 +13,12 @@ const AnimeInfo = (props) => {
         `https://gogoanime.consumet.org/anime-details/${props.animeId}`
       );
       setAnimeDetail({ ...response.data });
+      setAnimeGenre([...response.data.genres]);
     };
     getAnimeDetail();
   }, []);
-  console.log("Anime Genre: ", animeDetail.genres);
+  console.log("Anime Genre: ", ...animeGenre);
+  console.log("Anime Detail: ", animeDetail);
 
   return (
     <div>
@@ -31,9 +34,7 @@ const AnimeInfo = (props) => {
             <Descriptions.Item label="Status">
               {animeDetail.status}
             </Descriptions.Item>
-            <Descriptions.Item label="Genre">
-              {animeDetail.genres}
-            </Descriptions.Item>
+            <Descriptions.Item label="Genre">{...animeGenre}</Descriptions.Item>
           </Descriptions>
         </Col>
       </Row>

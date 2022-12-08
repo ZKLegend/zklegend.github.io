@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Dropdown, Menu, Space, Card, Image, Popover } from "antd";
+import {
+  Button,
+  Dropdown,
+  Menu,
+  Space,
+  Card,
+  Image,
+  Popover,
+  Pagination,
+} from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { PlayCircleFilled } from "@ant-design/icons";
@@ -13,7 +22,7 @@ const items = [
   { key: "name-dsc", label: "Descending" },
 ];
 
-const AnimeCategoryList = ({ animeTitle, animeImg, animeId, categoryName }) => {
+const AnimeCategoryList = ({ animeTitle, animeImg, animeId }) => {
   return (
     <Popover
       content={<AnimeInfo animeId={animeId} />}
@@ -96,7 +105,9 @@ const AnimeCategory = () => {
 
   return (
     <div className="anime-category">
-      <h1>{capitalizeFirstLetter(params.categoryName)} Anime</h1>
+      <h1 style={{ color: "white" }}>
+        {capitalizeFirstLetter(params.categoryName)} Anime
+      </h1>
       <div className="poster-container">Top {params.categoryName} Anime</div>
       <Dropdown
         menu={{
@@ -126,6 +137,7 @@ const AnimeCategory = () => {
           />
         ))}
       </div>
+      <Pagination style={{ color: "white" }} defaultCurrent={1} total={50} />
     </div>
   );
 };

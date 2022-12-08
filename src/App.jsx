@@ -25,12 +25,10 @@ const App = () => {
             position: "sticky",
             top: "0",
             zIndex: "1",
-            display: "flex",
-            justifyContent: "space-between",
           }}
         >
-          <Row justify="space-between" style={{ flexGrow: "3" }}>
-            <Col span={24}>
+          <Row align="center" gutter={40}>
+            <Col span={12}>
               <Space size={30}>
                 <Link to="/" className="home-navigation">
                   MY ANIME
@@ -40,10 +38,10 @@ const App = () => {
                 <Link to="/mylist">My List</Link>
               </Space>
             </Col>
-          </Row>
-          <SearchFunction />
-          <Row>
-            <Col span={24}>
+            <Col span={6} offset={3}>
+              <SearchFunction />
+            </Col>
+            <Col span={3}>
               <Space size={30}>
                 <Link className="register-nav" to="/register">
                   Register
