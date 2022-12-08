@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Card, Typography, Button } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
@@ -52,7 +53,11 @@ const AnimeDetail = () => {
   return (
     <div>
       {/* Anime Stream */}
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && (
+        <h1>
+          <LoadingOutlined style={{ color: "white" }} />
+        </h1>
+      )}
       {!isLoading && episodesList.length == 0 && <h1>No Episode List</h1>}
       {!isLoading && episodesList.length > 0 && (
         <div>
