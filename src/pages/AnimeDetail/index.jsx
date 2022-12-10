@@ -94,15 +94,15 @@ const AnimeDetail = () => {
               <Row>
                 <Col span={24}>
                   {episodesList.map((element) => (
-                    <a
+                    <Link
                       key={params.animeId}
                       style={{ maxWidth: "90px" }}
-                      href={`/${params.animeId}/${element.episodeNum}`}
+                      to={`/${params.animeId}/${element.episodeNum}`}
                     >
                       <Button
                         style={{ padding: "0", width: "90px" }}
                       >{`Episode ${element.episodeNum}`}</Button>
-                    </a>
+                    </Link>
                   ))}
                 </Col>
               </Row>
