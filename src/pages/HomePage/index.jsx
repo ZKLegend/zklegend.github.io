@@ -24,7 +24,7 @@ const HomePage = () => {
             <BigPoster />
           </Col>
           {categoryData.map((element) => (
-            <Col span={16} offset={4}>
+            <Col key={element} span={16} offset={4}>
               <CategorySlide categoryName={element} />
             </Col>
           ))}

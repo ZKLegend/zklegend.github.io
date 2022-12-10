@@ -75,7 +75,7 @@ const CategorySlide = ({ categoryName }) => {
         dots={false}
       >
         {animeList.map((element) => (
-          <Row>
+          <Row key={element.animeId}>
             <Col>
               <Popover
                 content={<AnimeInfo animeId={element.animeId} />}

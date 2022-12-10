@@ -39,7 +39,7 @@ const BigPoster = () => {
     <div className="home-page">
       <Carousel autoplay={true} dots={false}>
         {recentRelease.map((element) => (
-          <Row>
+          <Row key={element.animeId}>
             <Col span={24} style={{ position: "relative", height: "100%" }}>
               <Col
                 span={8}

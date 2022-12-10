@@ -95,6 +95,7 @@ const AnimeDetail = () => {
                 <Col span={24}>
                   {episodesList.map((element) => (
                     <a
+                      key={params.animeId}
                       style={{ maxWidth: "90px" }}
                       href={`/${params.animeId}/${element.episodeNum}`}
                     >

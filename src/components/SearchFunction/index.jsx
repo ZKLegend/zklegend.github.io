@@ -23,7 +23,7 @@ const SearchFunction = () => {
     timeOutId = setTimeout(() => {
       const getSearchResult = async () => {
         const response = await axios.get(
-          `https://gogoanime.consumet.org/search?keyw=${input}`
+          `https://gogoanime.consumet.org/search?keyw=${event.target.value}`
         );
         setSearchResult([...response.data]);
       };
@@ -32,7 +32,7 @@ const SearchFunction = () => {
     console.log("TimeOut ID: ", timeOutId);
   };
   console.log("Search Result: ", searchResult);
-  console.log("Input: ", input);
+  // console.log("Input: ", input);
 
   return (
     <div
@@ -49,6 +49,7 @@ const SearchFunction = () => {
         onChange={handleSearchInput}
         value={input}
       />
+
       {/* Search Result Section */}
       <div
         ref={ref}
@@ -67,6 +68,7 @@ const SearchFunction = () => {
           input != "" &&
           searchResult.map((element) => (
             <Link
+              key={element.animeId}
               onClick={() => {
                 return setInput("");
               }}
