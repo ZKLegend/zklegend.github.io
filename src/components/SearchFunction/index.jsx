@@ -67,14 +67,12 @@ const SearchFunction = () => {
         {searchResult.length > 0 &&
           input != "" &&
           searchResult.map((element) => (
-            // Sau khi click vào kết quả Search ở HomePage
-            // -> ra được trang xem phim đúng như mong muốn
-            // -> Từ trang xem phim đó search và chọn 1 phim khác thì page lại không render (mặc dù trên đường dẫn có thay đổi)
             <Link
-              key={element.animeId}
               onClick={() => {
                 return setInput("");
               }}
+              replace={true}
+              key={element.animeId}
               to={`${element.animeId}/1`}
               style={{
                 display: "block",

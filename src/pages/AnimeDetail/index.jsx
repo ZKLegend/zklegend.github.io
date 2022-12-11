@@ -40,10 +40,11 @@ const AnimeDetail = () => {
         }`
       );
       setStreamingURL(response2.data.Referer);
+      // forceRender();
       setIsLoading(false);
     };
     getAnimeDetail();
-  }, []);
+  }, [`${params.episodeNumber}`, `${params.animeId}`]);
 
   console.log("Anime Detail: ", animeDetail);
   console.log("Episode Id list: ", episodeId);
@@ -95,6 +96,7 @@ const AnimeDetail = () => {
                 <Col span={24}>
                   {episodesList.map((element) => (
                     <Link
+                      replace
                       key={params.animeId}
                       style={{ maxWidth: "90px" }}
                       to={`/${params.animeId}/${element.episodeNum}`}
