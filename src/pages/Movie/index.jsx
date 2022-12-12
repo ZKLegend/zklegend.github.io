@@ -11,24 +11,26 @@ const items = [
   { key: "name-dsc", label: "Descending" },
 ];
 
-const Trending = () => {
+const Movie = () => {
   const [animeList, setAnimeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
 
-  // Lấy dữ liệu Anime Popular
+  // Lấy dữ liệu Anime Movie
   useEffect(() => {
-    const getTrendingAnime = async () => {
+    const getAnimeMovie = async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `https://gogoanime.consumet.org/popular`
+        `https://gogoanime.consumet.org/anime-movies`
       );
       setAnimeList([...response.data]);
       setIsLoading(false);
     };
-    getTrendingAnime();
+    getAnimeMovie();
   }, []);
+
+  console.log("AnimeList: ", animeList);
 
   // Sắp xếp theo tên Anime
   const onClick = (event) => {
@@ -65,7 +67,7 @@ const Trending = () => {
     const showDatabyPage = async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `https://gogoanime.consumet.org/popular?page=${pageNumber}`
+        `https://gogoanime.consumet.org/anime-movies?page=${pageNumber}`
       );
       setAnimeList([...response.data]);
       setIsLoading(false);
@@ -75,7 +77,7 @@ const Trending = () => {
 
   return (
     <div className="anime-category">
-      <h1 style={{ color: "white" }}>Top Trending Anime</h1>
+      <h1 style={{ color: "white" }}>Anime Movie</h1>
       <Dropdown
         menu={{
           items,
@@ -121,4 +123,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default Movie;

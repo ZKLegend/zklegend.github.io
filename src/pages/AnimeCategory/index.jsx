@@ -14,51 +14,12 @@ import {
 import { PlayCircleFilled, LoadingOutlined } from "@ant-design/icons";
 
 import "./style.css";
-import AnimeInfo from "../../components/AnimeInfo";
+import AnimeCategoryList from "../../components/AnimeCategoryList";
 
 const items = [
   { key: "name-asc", label: "Ascending" },
   { key: "name-dsc", label: "Descending" },
 ];
-
-// Component tạo Card Anime
-const AnimeCategoryList = ({ animeTitle, animeImg, animeId }) => {
-  return (
-    <Popover
-      content={<AnimeInfo animeId={animeId} />}
-      title={animeTitle}
-      placement="right"
-      arrowPointAtCenter
-    >
-      <Card
-        bordered={false}
-        style={{
-          position: "relative",
-          margin: "20px",
-          width: "calc(100%/5)",
-        }}
-      >
-        <Image src={animeImg} preview={false} style={{ width: "100%" }} />
-        <Link
-          to={`/${animeId}/1`}
-          className="link-container"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            top: "0",
-            left: "0",
-          }}
-        >
-          <PlayCircleFilled style={{ fontSize: "60px" }} className="play-btn" />
-        </Link>
-      </Card>
-    </Popover>
-  );
-};
 
 const AnimeCategory = () => {
   const [animeList, setAnimeList] = useState([]);
@@ -162,6 +123,7 @@ const AnimeCategory = () => {
               animeImg={element.animeImg}
               animeId={element.animeId}
               categoryName={params.categoryName}
+              params={params}
             />
           ))}
         </div>

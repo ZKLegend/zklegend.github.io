@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   Carousel,
@@ -25,7 +25,7 @@ import AnimeInfo from "../AnimeInfo";
 
 const CategorySlide = ({ categoryName }) => {
   const [animeList, setAnimeList] = useState([]);
-  const displayRef = useRef();
+  const params = useParams();
   const ref = useRef();
 
   useEffect(() => {
@@ -78,7 +78,9 @@ const CategorySlide = ({ categoryName }) => {
           <Row key={element.animeId}>
             <Col>
               <Popover
-                content={<AnimeInfo animeId={element.animeId} />}
+                content={
+                  <AnimeInfo animeId={element.animeId} params={params} />
+                }
                 title={element.animeTitle}
                 placement="right"
                 arrowPointAtCenter

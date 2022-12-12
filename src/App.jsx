@@ -4,7 +4,7 @@ import { Layout, Menu, Space, Input, Col, Row } from "antd";
 import "./style.css";
 
 import HomePage from "./pages/HomePage";
-import Movies from "./pages/Movies";
+import Movie from "./pages/Movie";
 import Trending from "./pages/Trending";
 import Mylist from "./pages/Mylist";
 import Register from "./pages/Register";
@@ -34,7 +34,7 @@ const App = () => {
                 <Link to="/" className="home-navigation">
                   MY ANIME
                 </Link>
-                <Link to="/movies">Movie</Link>
+                <Link to="/anime-movies">Movie</Link>
                 <Link to="/trending">Trending</Link>
                 <Link to="/mylist">My List</Link>
               </Space>
@@ -57,7 +57,7 @@ const App = () => {
         <Content>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/movies" element={<Movies />} />
+            <Route path="/anime-movies" element={<Movie />} />
             <Route path="/trending" element={<Trending />} />
             <Route
               path="mylist"

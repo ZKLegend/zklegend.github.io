@@ -6,7 +6,7 @@ const Mylist = (props) => {
   return (
     <>
       {!props.isLogin ? (
-        <h1>
+        <h1 style={{ color: "white" }}>
           Please <Link to="/login">login</Link> first
         </h1>
       ) : (

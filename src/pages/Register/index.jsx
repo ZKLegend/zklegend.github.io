@@ -12,8 +12,6 @@ const Register = () => {
       `https://6396ea4986d04c763384753d.mockapi.io/UserData`,
       { username: values.username, password: values.password }
     );
-    console.log("Response: ", response.status);
-    console.log("Value: ", values);
     if (response.status == "201") {
       setRegisterStatus(true);
     }
@@ -82,7 +80,7 @@ const Register = () => {
                       message: "Please input your password!",
                     },
                     ({ getFieldValue }) => ({
-                      validator(_, value) {
+                      validator(rule, value) {
                         if (!value || getFieldValue("password") === value) {
                           return Promise.resolve();
                         }
