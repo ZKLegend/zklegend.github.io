@@ -34,7 +34,9 @@ const AnimeInfo = (props) => {
             <Descriptions.Item label="Status">
               {animeDetail.status}
             </Descriptions.Item>
-            <Descriptions.Item label="Genre">{...animeGenre}</Descriptions.Item>
+            <Descriptions.Item label="Genre">
+              {[...animeGenre]}
+            </Descriptions.Item>
           </Descriptions>
         </Col>
       </Row>

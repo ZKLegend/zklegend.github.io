@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Layout, Menu, Space, Input, Col, Row } from "antd";
 import "./style.css";
@@ -17,6 +17,7 @@ const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 
 const App = () => {
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <div className="app">
       <Layout className="layout" style={{ backgroundColor: "#263238" }}>
@@ -58,7 +59,10 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/trending" element={<Trending />} />
-            <Route path="mylist" element={<Mylist />} />
+            <Route
+              path="mylist"
+              element={<Mylist isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/:categoryName" element={<AnimeCategory />} />

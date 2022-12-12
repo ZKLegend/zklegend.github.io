@@ -45,14 +45,14 @@ const BigPoster = () => {
       <Carousel
         autoplay={true}
         dots={false}
-        style={{ height: "500px", width: "100%" }}
+        style={{ height: "500px", width: "100%", overflow: "hidden" }}
       >
         {animeDetail.map((element, index) => (
           <Row>
             <Col span={24} style={{ position: "relative" }}>
               <Row>
                 <Col
-                  span={10}
+                  span={12}
                   style={{
                     position: "absolute",
                     zIndex: "1",
@@ -63,12 +63,16 @@ const BigPoster = () => {
                     justifyContent: "space-around",
                   }}
                 >
-                  <Title style={{ color: "white" }}>{element.animeTitle}</Title>
+                  <Title style={{ color: "white", padding: "0 30px" }}>
+                    {element.animeTitle}
+                  </Title>
                   <Paragraph
                     style={{
                       color: "white",
                       textAlign: "center",
                       padding: "0 30px",
+                      maxHeight: "30%",
+                      overflow: "auto",
                     }}
                     ellipsis={
                       ellipsis
