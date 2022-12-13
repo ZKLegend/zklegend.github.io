@@ -96,14 +96,14 @@ const AnimeDetail = () => {
             <Col
               span={16}
               offset={4}
-              style={{ border: "1px solid white", padding: "0 40px" }}
+              style={{ border: "1px solid white", padding: "20px 40px" }}
             >
               {animeDetail.type === "Movie" ? (
                 <Row>
                   <Col span={24}>
                     <Title
                       level={2}
-                      style={{ color: "white", marginTop: "auto" }}
+                      style={{ color: "white", marginTop: "20px" }}
                     >
                       {`${animeDetail.animeTitle}`}
                     </Title>
@@ -144,17 +144,6 @@ const AnimeDetail = () => {
                   </Row>
                 </>
               )}
-              <Divider style={{ color: "white" }}>Related Anime</Divider>
-              <Row>
-                <Col span={24}>
-                  <Title
-                    level={5}
-                    style={{ marginTop: "auto", color: "white" }}
-                  >
-                    Related Anime
-                  </Title>
-                </Col>
-              </Row>
             </Col>
           </Row>
         </div>

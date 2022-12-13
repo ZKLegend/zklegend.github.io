@@ -29,10 +29,14 @@ const AnimeInfo = (props) => {
       {props.params.animeId === props.animeId ? (
         <Row>
           <Col span={24}>
-            <Descriptions style={{ width: "100%" }} column={5}>
-              <Descriptions.Item label="Description">
-                {animeDetail.synopsis}
-              </Descriptions.Item>
+            <Descriptions
+              style={{ width: "100%", backgroundColor: "white" }}
+              column={4}
+              bordered
+              labelStyle={{
+                fontWeight: "600",
+              }}
+            >
               <Descriptions.Item label="Type">
                 {animeDetail.type}
               </Descriptions.Item>
@@ -49,6 +53,9 @@ const AnimeInfo = (props) => {
                     <br />
                   </>
                 ))}
+              </Descriptions.Item>
+              <Descriptions.Item label="Description">
+                {animeDetail.synopsis}
               </Descriptions.Item>
             </Descriptions>
           </Col>
