@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { Layout, Menu, Space, Input, Col, Row } from "antd";
+import {
+  Layout,
+  Menu,
+  Space,
+  Input,
+  Col,
+  Row,
+  Avatar,
+  Button,
+  Popover,
+} from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import "./style.css";
 
 import HomePage from "./pages/HomePage";
@@ -18,6 +29,19 @@ const { Search } = Input;
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
+
+  const userDropDown = (
+    <>
+      <Button
+        onClick={() => {
+          setIsLogin(false);
+        }}
+      >
+        Log out
+      </Button>
+    </>
+  );
+
   return (
     <div className="app">
       <Layout className="layout" style={{ backgroundColor: "#263238" }}>
@@ -43,14 +67,33 @@ const App = () => {
               <SearchFunction />
             </Col>
             <Col span={3}>
-              <Space size={30}>
-                <Link className="register-nav" to="/register">
-                  Register
-                </Link>
-                <Link className="login-nav" to="/login">
-                  Login
-                </Link>
-              </Space>
+              {isLogin ? (
+                <Popover
+                  placement="bottom"
+                  trigger="click"
+                  content={userDropDown}
+                >
+                  {" "}
+                  <Avatar
+                    size="large"
+                    icon={<UserOutlined />}
+                    style={{
+                      color: "black",
+                      backgroundColor: "white",
+                      cursor: "pointer",
+                    }}
+                  />
+                </Popover>
+              ) : (
+                <Space size={30}>
+                  <Link className="register-nav" to="/register">
+                    Register
+                  </Link>
+                  <Link className="login-nav" to="/login">
+                    Login
+                  </Link>
+                </Space>
+              )}
             </Col>
           </Row>
         </Header>
@@ -64,7 +107,10 @@ const App = () => {
               element={<Mylist isLogin={isLogin} setIsLogin={setIsLogin} />}
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/login"
+              element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
             <Route path="/:categoryName" element={<AnimeCategory />} />
             <Route path="/:animeId/:episodeNumber" element={<AnimeDetail />} />
           </Routes>

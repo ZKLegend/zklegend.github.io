@@ -7,14 +7,10 @@ import "./style.css";
 const Register = () => {
   const [registerStatus, setRegisterStatus] = useState(false);
   const [form] = Form.useForm();
-  const onFinish = async (values) => {
-    const response = await axios.post(
-      `https://6396ea4986d04c763384753d.mockapi.io/UserData`,
-      { username: values.username, password: values.password }
-    );
-    if (response.status == "201") {
-      setRegisterStatus(true);
-    }
+  const onFinish = (values) => {
+    window.localStorage.setItem("username", values.username);
+    window.localStorage.setItem("password", values.password);
+    setRegisterStatus(true);
   };
 
   console.log("Register Status: ", registerStatus);
@@ -24,7 +20,7 @@ const Register = () => {
       {registerStatus ? (
         <>
           {" "}
-          <h1 style={{ color: "white" }}>Register Succesfull</h1>
+          <h1 style={{ color: "white" }}>Register Success</h1>
           <Link to="/login">
             <Button
               style={{ display: "block", margin: "auto", marginBottom: "20px" }}
