@@ -30,8 +30,6 @@ const Movie = () => {
     getAnimeMovie();
   }, []);
 
-  console.log("AnimeList: ", animeList);
-
   // Sắp xếp theo tên Anime
   const onClick = (event) => {
     setAnimeList(

@@ -16,7 +16,6 @@ const AnimeDetail = () => {
   const [episodeId, setEpisodeId] = useState([]);
   const params = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("Params: ", params.episodeNumber);
 
   // Lấy AnimeDetail => Lấy EpisodeId => Lấy EpisodeURL
   useEffect(() => {
@@ -48,11 +47,6 @@ const AnimeDetail = () => {
     };
     getAnimeDetail();
   }, [`${params.episodeNumber}`, `${params.animeId}`]);
-
-  console.log("Anime Detail: ", animeDetail);
-  console.log("Episode Id list: ", episodeId);
-  console.log("Streaming URL: ", streamingURL);
-  console.log("Episode List: ", episodesList);
 
   return (
     <div>
@@ -131,7 +125,7 @@ const AnimeDetail = () => {
                       {episodesList.map((element) => (
                         <Link
                           replace
-                          key={params.animeId}
+                          key={element.episodeId}
                           style={{ maxWidth: "90px" }}
                           to={`/${params.animeId}/${element.episodeNum}`}
                         >

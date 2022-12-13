@@ -8,7 +8,6 @@ const AnimeInfo = (props) => {
   const [animeDetail, setAnimeDetail] = useState({});
   const [animeGenre, setAnimeGenre] = useState([]);
 
-  console.log("Props:", props.animeId);
   useEffect(() => {
     const getAnimeDetail = async () => {
       const response = await axios.get(
@@ -19,10 +18,6 @@ const AnimeInfo = (props) => {
     };
     getAnimeDetail();
   }, []);
-  console.log("Anime Genre: ", animeGenre);
-  console.log("Anime Detail: ", animeDetail);
-  console.log(animeGenre[0]);
-  console.log("Params: ", props.params);
 
   return (
     <div>
@@ -47,7 +42,7 @@ const AnimeInfo = (props) => {
                 {animeDetail.status}
               </Descriptions.Item>
               <Descriptions.Item label="Genre">
-                {animeGenre.map((element) => (
+                {animeGenre.map((element, index) => (
                   <>
                     {element}
                     <br />

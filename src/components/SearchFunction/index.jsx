@@ -1,9 +1,7 @@
-import { Row, Col, Input } from "antd";
+import { Input } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
-import React, { useRef } from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const { Search } = Input;
 
@@ -11,7 +9,6 @@ const SearchFunction = () => {
   const [input, setInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const ref = useRef();
-  console.log("Ref: ", ref);
 
   let timeOutId = null;
 
@@ -29,10 +26,7 @@ const SearchFunction = () => {
       };
       getSearchResult();
     }, 1000);
-    console.log("TimeOut ID: ", timeOutId);
   };
-  console.log("Search Result: ", searchResult);
-  // console.log("Input: ", input);
 
   return (
     <div

@@ -48,7 +48,7 @@ const BigPoster = () => {
         style={{ height: "500px", width: "100%", overflow: "hidden" }}
       >
         {animeDetail.map((element, index) => (
-          <Row>
+          <Row key={index}>
             <Col span={24} style={{ position: "relative" }}>
               <Row>
                 <Col

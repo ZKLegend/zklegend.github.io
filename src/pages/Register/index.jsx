@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button, Row, Col } from "antd";
-import "./style.css";
 
 const Register = () => {
   const [registerStatus, setRegisterStatus] = useState(false);
@@ -12,8 +11,6 @@ const Register = () => {
     window.localStorage.setItem("password", values.password);
     setRegisterStatus(true);
   };
-
-  console.log("Register Status: ", registerStatus);
 
   return (
     <>

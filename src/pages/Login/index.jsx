@@ -6,11 +6,9 @@ import { Link } from "react-router-dom";
 const { Text } = Typography;
 
 const Login = (props) => {
-  console.log("Props:", props);
   //   const [form] = Form.useForm();
   const [validation, setValidation] = useState(true);
   const onFinish = (values) => {
-    console.log(values);
     if (
       values.username != localStorage.getItem("username") ||
       values.password != localStorage.getItem("password")
