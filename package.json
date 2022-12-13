@@ -1,12 +1,15 @@
 {
   "name": "CIJS77-Final-Exercise",
   "version": "0.1.0",
+  "homepage": "http://ZKLegend.github.io/CIJS77-Final-Exercise",
   "description": "",
   "license": "MIT",
   "scripts": {
     "start": "vite",
     "preview": "vite preview",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
