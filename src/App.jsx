@@ -10,6 +10,7 @@ import {
   Avatar,
   Button,
   Popover,
+  ConfigProvider,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "./style.css";
@@ -44,79 +45,90 @@ const App = () => {
 
   return (
     <div className="app">
-      <Layout className="layout" style={{ backgroundColor: "#263238" }}>
-        <Header
-          style={{
-            position: "sticky",
-            top: "0",
-            zIndex: "1",
-          }}
-        >
-          <Row align="center" gutter={40}>
-            <Col span={12}>
-              <Space size={30}>
-                <Link to="/" className="home-navigation">
-                  MY ANIME
-                </Link>
-                <Link to="/anime-movies">Movie</Link>
-                <Link to="/trending">Trending</Link>
-                <Link to="/mylist">My List</Link>
-              </Space>
-            </Col>
-            <Col span={6} offset={3}>
-              <SearchFunction />
-            </Col>
-            <Col span={3}>
-              {isLogin ? (
-                <Popover
-                  placement="bottom"
-                  trigger="click"
-                  content={userDropDown}
-                >
-                  {" "}
-                  <Avatar
-                    size="large"
-                    icon={<UserOutlined />}
-                    style={{
-                      color: "black",
-                      backgroundColor: "white",
-                      cursor: "pointer",
-                    }}
-                  />
-                </Popover>
-              ) : (
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#00b96b",
+          },
+        }}
+      >
+        <Layout className="layout" style={{ backgroundColor: "#263238" }}>
+          <Header
+            style={{
+              position: "sticky",
+              top: "0",
+              zIndex: "1",
+            }}
+          >
+            <Row align="center" gutter={40}>
+              <Col span={12}>
                 <Space size={30}>
-                  <Link className="register-nav" to="/register">
-                    Register
+                  <Link to="/" className="home-navigation">
+                    MY ANIME
                   </Link>
-                  <Link className="login-nav" to="/login">
-                    Login
-                  </Link>
+                  <Link to="/anime-movies">Movie</Link>
+                  <Link to="/trending">Trending</Link>
+                  <Link to="/mylist">My List</Link>
                 </Space>
-              )}
-            </Col>
-          </Row>
-        </Header>
-        <Content>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/anime-movies" element={<Movie />} />
-            <Route path="/trending" element={<Trending />} />
-            <Route
-              path="mylist"
-              element={<Mylist isLogin={isLogin} setIsLogin={setIsLogin} />}
-            />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/login"
-              element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
-            />
-            <Route path="/:categoryName" element={<AnimeCategory />} />
-            <Route path="/:animeId/:episodeNumber" element={<AnimeDetail />} />
-          </Routes>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>Designed by AnhLK</Footer>
-      </Layout>
+              </Col>
+              <Col span={6} offset={3}>
+                <SearchFunction />
+              </Col>
+              <Col span={3}>
+                {isLogin ? (
+                  <Popover
+                    placement="bottom"
+                    trigger="click"
+                    content={userDropDown}
+                  >
+                    {" "}
+                    <Avatar
+                      size="large"
+                      icon={<UserOutlined />}
+                      style={{
+                        color: "black",
+                        backgroundColor: "white",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </Popover>
+                ) : (
+                  <Space size={30}>
+                    <Link className="register-nav" to="/register">
+                      Register
+                    </Link>
+                    <Link className="login-nav" to="/login">
+                      Login
+                    </Link>
+                  </Space>
+                )}
+              </Col>
+            </Row>
+          </Header>
+          <Content>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/anime-movies" element={<Movie />} />
+              <Route path="/trending" element={<Trending />} />
+              <Route
+                path="mylist"
+                element={<Mylist isLogin={isLogin} setIsLogin={setIsLogin} />}
+              />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/login"
+                element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+              />
+              <Route path="/:categoryName" element={<AnimeCategory />} />
+              <Route
+                path="/:animeId/:episodeNumber"
+                element={<AnimeDetail />}
+              />
+            </Routes>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>Designed by AnhLK</Footer>
+        </Layout>
+      </ConfigProvider>
     </div>
   );
 };
